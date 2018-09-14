@@ -6,6 +6,10 @@ module Checks
         for_feature :foreman_database
         description 'Check for duplicate Puppet class records'
         tags :pre_upgrade
+        confine do
+          binding.pry
+          feature(:foreman_server) && feature(:foreman_server).package_version < '1.21'
+        end
       end
 
       def run
@@ -20,7 +24,7 @@ module Checks
         classes_list = duplicate_names.reduce('') do |memo, hash|
           memo.tap { |acc| acc << "#{hash['name']} - #{hash['name_count']}\n" }
         end
-        help_msg = 'Please head over to Hosts -> Classes'
+        help_msg = 'Please head over to Configure -> Classes'
         help_msg << " and make sure there is only 1 Puppet class record for each name.\n"
         [msg, classes_list, help_msg].join('')
       end

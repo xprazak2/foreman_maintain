@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 $LOAD_PATH.unshift(File.expand_path('../../lib', __FILE__))
-
+require 'pry-byebug'
 require 'foreman_maintain'
 
 CONFIG_FILE = '/etc/foreman-maintain/foreman_maintain.yml'.freeze

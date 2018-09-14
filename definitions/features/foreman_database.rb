@@ -1,5 +1,6 @@
 class Features::ForemanDatabase < ForemanMaintain::Feature
-  FOREMAN_DB_CONFIG = '/etc/foreman/database.yml'.freeze
+  # FOREMAN_DB_CONFIG = '/etc/foreman/database.yml'.freeze
+  FOREMAN_DB_CONFIG = '/home/vagrant/projects/foreman/config/database.yml'.freeze
 
   include ForemanMaintain::Concerns::BaseDatabase
 
