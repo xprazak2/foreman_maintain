@@ -19,6 +19,14 @@ module ForemanMaintain
         end
       end
 
+      subcommand 'remove-docker', 'remove docker' do
+        def execute
+          scenario = Scenarios::DropForemanDocker.new
+          run_scenario scenario
+          exit runner.exit_code
+        end
+      end
+
       subcommand 'status', 'Get maintenance-mode status' do
         def execute
           scenario = Scenarios::MaintenanceModeStatus.new

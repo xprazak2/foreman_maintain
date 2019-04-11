@@ -105,7 +105,7 @@ module ForemanMaintain
       end
 
       def packages_action(action, packages, options = {})
-        expected_actions = [:install, :update]
+        expected_actions = [:install, :update, :remove]
         unless expected_actions.include?(action)
           raise ArgumentError, "Unexpected action #{action} expected #{expected_actions.inspect}"
         end

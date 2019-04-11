@@ -62,6 +62,18 @@ module Scenarios::Satellite_6_5
     end
   end
 
+  class DropForemanDocker < Abstract
+    upgrade_metadata do
+      description 'Procedures to drop foreman_docker'
+    end
+
+    def compose
+      add_step(Procedures::ForemanDocker::RemoveForemanDocker.new)
+      add_step(Procedures::Service::Restart.new(:only => ['httpd']))
+      add_step(Procedures::Foreman::ApipieCache.new)
+    end
+  end
+
   class PostUpgradeChecks < Abstract
     upgrade_metadata do
       description 'Checks after upgrading to Satellite 6.5'
